@@ -1,0 +1,144 @@
+body {
+	font-family:"Lucida Grande","Lucida Sans Unicode","DejaVu Sans",Lucida,Arial,Helvetica,sans-serif;
+}
+
+h1 {
+	color:#666;
+	font-size:20px;
+	font-size:1.25rem;
+	text-align:center;
+	margin:0;
+	padding:0.5rem 0;
+}
+
+a {
+	color:#0095dd;
+	text-decoration:none;
+}
+
+a:hover, a:focus {
+	color:#2255aa;
+	text-decoration:underline;
+}
+
+.course-title {
+	margin-bottom: 30px;
+}
+
+/*************************************** Player style ***************************************/
+#player {
+	position:absolute;
+	padding:0;
+	margin:-3px
+}
+
+.videocontent {
+	width:80%;
+	max-width: 640px;
+	margin: 0 auto;
+}
+
+.jwplayer.jw-skin-myskin .jw-display-icon-container {
+    border-style: solid;
+    border-width: medium;
+    border-radius: 50%;
+    padding:1em;
+}
+
+object {
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+/*************************************** Lists style ***************************************/
+.lists{
+    max-height: 400px;
+    overflow-y:scroll; 
+}
+
+.lists li {
+	list-style-type: none;
+}
+
+.lists::-webkit-scrollbar {
+    width: 10px;
+}
+
+.lists::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.lists::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: rgba(0,0,255,0.3); 
+    background-color: #016DCC;
+    -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.5); 
+}
+
+.lists::-webkit-scrollbar-thumb:window-inactive {
+	background: rgba(255,0,0,0.4); 
+}
+
+.panel-footer a, .panel-footer, .panel-footer a:hover, .panel-title{
+	text-align: center;
+	color: #FFF;
+}
+
+
+.panel.with-nav-tabs .panel-heading{
+    padding: 5px 5px 0 5px;
+}
+.panel.with-nav-tabs .nav-tabs{
+	border-bottom: none;
+}
+.panel.with-nav-tabs .nav-justified{
+	margin-bottom: -1px;
+}
+/********************************************************************/
+
+/*** PANEL PRIMARY ***/
+.with-nav-tabs.panel-primary .nav-tabs > li > a,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+    color: #fff;
+}
+.with-nav-tabs.panel-primary .nav-tabs > .open > a,
+.with-nav-tabs.panel-primary .nav-tabs > .open > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > .open > a:focus,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li > a:focus {
+	color: #fff;
+	background-color: #3071a9;
+	border-color: transparent;
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a,
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li.active > a:focus {
+	color: #428bca;
+	background-color: #fff;
+	border-color: #428bca;
+	border-bottom-color: transparent;
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu {
+    background-color: #428bca;
+    border-color: #3071a9;
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a {
+    color: #fff;   
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
+    background-color: #3071a9;
+}
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a,
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
+.with-nav-tabs.panel-primary .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
+    background-color: #4a9fe9;
+}
+
+.image img{
+	width: 100px;
+}

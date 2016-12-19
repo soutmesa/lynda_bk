@@ -1,0 +1,33 @@
+<div class="col-md-12 animated bounceInDown">
+  <hgroup class="mb20 hero-unit center">
+    <h1>Search Results</h1>
+    <h2 class="lead"><strong class="text-danger">{{leng}}</strong> <span ng-if="results.length">results were</span> found  <span ng-if="key.length > 0">for the search for <strong class="text-danger">{{key}}</strong></span></h2>
+    <a ui-sref="home" class="btn btn-large btn-info" ng-if="results.length <= 0"><i class="icon-home icon-white"></i> Take Me Home</a>
+  </hgroup>
+  <section class="col-xs-12 col-sm-6 col-md-12">
+    <!-- Start Angularjs show results -->
+    <article class="search-result row" ng-repeat="result in results">
+      <div class="col-xs-12 col-sm-12 col-md-3">
+        <a ui-sref="show({ind: result.id})"  title="{{result.name}}"  class="thumbnail"><img src="https://cdn.pixabay.com/photo/2013/10/01/16/55/magnifying-glass-189254__180.png" alt="Image Not Found" /></a>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-2">
+        <ul class="meta-search">
+          <li><i class="glyphicon glyphicon-calendar"></i> <span>{{result.date_of_released}}</span></li>
+          <li><i class="glyphicon glyphicon-time"></i> <span>{{result.duration}}</span></li>
+          <li><i class="glyphicon glyphicon-eye-open"></i> <span>{{result.view}}</span></li>
+        </ul>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+        <h3><a ui-sref="show({ind: result.id, name: result.name})" title="{{result.name}}">{{result.name}}</a></h3>
+        <p>{{result.description}}</p>
+        <span class="plus"><a ui-sref="show({ind: result.id})"><i class="glyphicon glyphicon-plus"></i></a></span>
+      </div>
+      <span class="clearfix borda"></span>
+    </article>
+    <!-- End Angularjs show results -->
+    <ul ng-if="leng > 10" class="pager" align="center">
+      <li><a href="#" ng-click="previousPage(offset)">Previous</a></li>
+      <li><a href="#" ng-click="nextPage(offset)">Next</a></li>
+    </ul>
+  </section>
+</div>
