@@ -89,11 +89,11 @@ angular.module('lynda_bk', ['ui.router'])
   }
   function renderCourse(result){
     $scope.course = result;
-    console.log($scope.course);
+    // console.log($scope.course);
   }
 
   $scope.prepareTitle = function(title){
-    return title.replace(/\d*?\.mp4|\-|\s{2}/ig,"");
+    return title.replace(/[0-9]+|\s{2}|\.mp4|\-/ig,"");
   }
 
 }])
