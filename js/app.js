@@ -34,31 +34,38 @@ angular.module('lynda_bk', ['ui.router'])
 	$scope.offset = 0;
   $scope.limit = 5;
   $scope.num = $stateParams.num;
+  var vm = this;
+  vm.dummyItems = _.range(1, 151);
+  vm.pager = {};
+  vm.setPage = setPage;
 
   init();
+
   function init() {
     bkFactory.getCategories(renderCategories);
     bkFactory.getCourses($scope.limit, $scope.offset, renderCourses);
+    vm.setPage(1);
   }
+
+  function setPage(page) {
+    if (page < 1 || page > vm.pager.totalPages) {
+        return;
+    }
+    // get pager object from service
+    vm.pager = bkFactory.GetPager(vm.dummyItems.length, page);
+    // get current page of items
+    vm.items = vm.dummyItems.slice(vm.pager.startIndex, vm.pager.endIndex + 1);
+    console.log(vm.pager.pages.length);
+  }
+
   function renderCategories(result) {
     $scope.categories = result;
     $scope.defaultSelected = $scope.categories[0].id;
   }
+
   function renderCourses(result){
     $scope.courses = result;
     // console.log($scope.courses );
-    if ($scope.offset <= 0) {
-      $('.pager li:first-child').addClass('disabled');
-      $('.pager li:first-child a').attr('ng-click', '');
-      $('.pager li:last-child').addClass('enable');
-    }else {
-      $('.pager li:first-child').removeClass('disabled');
-      $('.pager li:first-child').addClass('enable');
-    }
-    if ($scope.courses.length < $scope.limit) {
-      $('.pager li:last-child').addClass('disabled');
-      $('.pager li:first-child').addClass('enable');
-    }
   }
 
   $scope.nextPage = function(){
