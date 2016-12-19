@@ -58,7 +58,7 @@ angular.module('lynda_bk')
       // default to first page
       currentPage = currentPage || 1;
       // default page size is 10
-      pageSize = pageSize || 10;
+      pageSize = pageSize || 10s;
       // calculate total pages
       var totalPages = Math.ceil(totalItems / pageSize);
       var startPage, endPage;

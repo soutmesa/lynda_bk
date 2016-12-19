@@ -48,12 +48,8 @@
       </article>
       <!-- End Angularjs show courses -->
       <div class="text-center">
-        <!-- <ul class="pager" align="center">
-          <li><a href="#" ng-click="prevousPage()">Previous</a></li>
-          <li><a href="#" ng-click="nextPage()">Next</a></li>
-        </ul> -->
         <!-- pager -->
-        <ul ng-if="vm.pager.pages.length>0" class="pagination">
+        <ul ng-if="vm.pager.pages.length" class="pagination">
           <li ng-class="{disabled:vm.pager.currentPage === 1}">
             <a ng-click="vm.setPage(1)">First</a>
           </li>
