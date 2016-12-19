@@ -57,8 +57,8 @@ switch ($_REQUEST['act']) {
 		try {
 			$query = "SELECT * FROM courses INNER JOIN cate_course ON ";
 			$query .= "courses.id = cate_course.course_id INNER JOIN categories ";
-			$query .= "on cate_course.cate_id = categories.id WHERE ";
-			$query .= "CONCAT_WS(name, cate_name, author, level, description, tag) LIKE '%";
+			$query .= "ON cate_course.cate_id = categories.id WHERE ";
+			$query .= "CONCAT_WS(courses.name, author, level, description, tag, categories.cate_name) LIKE '%";
 			if (!empty($_GET['key'])){
 				$query .= $_GET['key'];
 			}
@@ -68,13 +68,13 @@ switch ($_REQUEST['act']) {
 			}
 			$query .= "ORDER BY name DESC ";
 			if (isset($limit) && isset($offset)){
-				$query .= "limit $offset, $limit";
+				$query .= "LIMIT $offset, $limit";
 			}
 			$stmt = $db_connect->prepare($query);
 			$stmt->execute();
 			// return all datas queried object
 			$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-			// echo $limit;
+			// echo $query;
 			echo json_encode($results);
 		} catch(PDOException $ex) {
 		    //Something went wrong rollback!
@@ -85,19 +85,20 @@ switch ($_REQUEST['act']) {
 		try {
 			$query = "SELECT count(*) as leng FROM courses INNER JOIN cate_course ON ";
 			$query .= "courses.id = cate_course.course_id INNER JOIN categories ";
-			$query .= "on cate_course.cate_id = categories.id WHERE ";
-			$query .= "CONCAT_WS(name, cate_name, author, level, description, tag) ";
+			$query .= "ON cate_course.cate_id = categories.id WHERE ";
+			$query .= "CONCAT_WS(courses.name, author, level, description, tag, categories.cate_name) LIKE '%";
 			if (!empty($_GET['key'])){
-				$query .= "LIKE '%" . $_GET['key'] . "%' ";
+				$query .= $_GET['key'];
 			}
+			$query .= "%' ";
 			if (!empty($_GET['id'])){
-				$query .= "OR categories.cate_id = '" . $_GET['id'] . "' ";
+				$query .= "OR categories.id = '" . $_GET['id'] . "' ";
 			}
 			$stmt = $db_connect->prepare($query);
 			$stmt->execute();
 			// return all datas queried object
 			$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-			// echo $results;
+			// echo $query;
 			echo json_encode($results);
 		} catch(PDOException $ex) {
 		    //Something went wrong rollback!

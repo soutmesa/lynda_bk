@@ -37,6 +37,7 @@
         playVideo(url, sub, false);
 
         function playVideo(url,sub, auto){
+          var start = '';
           jwplayer('player').setup({
             'width': '100%',
             'height':'auto',
@@ -44,29 +45,26 @@
             'stretching': 'exactfit',
             'autostart': auto,
             'file': url,
-            'image': 'http://xiaomininja.com/wp-content/uploads/2016/05/Top-6-video-player-for-ultimate-pleasure-on-Xiaomi-device.jpg',
+            // 'image': 'https://cdn0.iconfinder.com/data/icons/network-technology-1/24/11-512.png',
             'tracks':[{
-                file: sub,
-                label: "English",
-                kind: "captions",
-                "default": false
+              file: sub,
+              label: "English",
+              kind: "captions",
+              "default": false
+            }],
+            'events':{
+              onReady: function(){
+                start = this.getDuration();
+              },
+              onPlay: function(){
+                console.log(start + ' go');
+                $('.jw-text-elapsed, .jw-text-duration').show();
+              },
+              onComplete: function() {
+                console.log("completed..");
               }
-            ],
-          })
-          .onPlay(function(){
-            $('.jw-text-elapsed, .jw-text-duration').show();
-          })
-          .onComplete(function(){
-            alert("Hello");
-            if($('a.item').hasClass('playing')){
-              var last_play = $('a.item.playing')
-              var url = last_play.next().attr('value');
-              var sub = last_play.next().text().replace(/\d\.\s/ig,"").trim() + ".srt";
-              var curr_play = last_play.next().addClass("playing");
-              last_play.removeClass('playing');
-              playVideo(url, sub, true);
             }
-          })
+          });
         }
 
       </script>

@@ -11,7 +11,7 @@ angular.module('lynda_bk', ['ui.router'])
       controller: 'homeController'
     })
     .state('search',{
-      url: '/search=:s?id',
+      url: '/search=:s&id=:ind',
       templateUrl: 'views/results.html',
       controller: 'searchController'
     })
