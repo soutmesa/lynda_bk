@@ -6,28 +6,29 @@
   </hgroup>
   <section class="col-xs-12 col-sm-6 col-md-12">
     <!-- Start Angularjs show results -->
-    <article class="search-result row" ng-repeat="result in results">
+    <!-- ng-repeat="result in results" -->
+    <article class="search-result row" dir-paginate="result in results | filter:q | itemsPerPage: pageSize" current-page="currentPage">
       <div class="col-xs-12 col-sm-12 col-md-3">
         <a ui-sref="show({ind: result.id})"  title="{{result.name}}"  class="thumbnail"><img src="http://loremflickr.com/200/120?random={{ $index + 1 }}" alt="Image Not Found" /></a>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-2">
         <ul class="meta-search">
-          <li><i class="glyphicon glyphicon-calendar"></i> <span>{{result.date_of_released}}</span></li>
-          <li><i class="glyphicon glyphicon-time"></i> <span>{{result.duration}}</span></li>
-          <li><i class="glyphicon glyphicon-eye-open"></i> <span>{{result.view}}</span></li>
+          <li><i class="glyphicon glyphicon-calendar"></i> <span>{{result.date_of_released}}12/9/2016</span></li>
+          <li><i class="glyphicon glyphicon-time"></i> <span>{{result.duration}}3h30min</span></li>
+          <li><i class="glyphicon glyphicon-eye-open"></i> <span>{{result.view}}101</span></li>
         </ul>
       </div>
       <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
         <h3><a ui-sref="show({ind: result.id, name: result.name})" title="{{result.name}}">{{result.name}}</a></h3>
-        <p>{{result.description}}</p>
+        <p>{{result.description}}Ready to learn how to code, debug, and program? Get started with our expert-taught tutorials explaining programming languages like C, C#, Python, Visual Basic, Java, and more.</p>
         <span class="plus"><a ui-sref="show({ind: result.id})"><i class="glyphicon glyphicon-arrow-right"></i></a></span>
       </div>
       <span class="clearfix borda"></span>
     </article>
-    <!-- End Angularjs show results -->
-    <ul ng-if="leng > 10" class="pager" align="center">
-      <li><a href="#" ng-click="previousPage(offset)">Previous</a></li>
-      <li><a href="#" ng-click="nextPage(offset)">Next</a></li>
-    </ul>
+    <!-- End Angularjs show courses -->
+    <br>
+    <div class="text-center">
+      <dir-pagination-controls boundary-links="true" template-url="directives/dirPagination.tpl.html"></dir-pagination-controls>
+    </div>
   </section>
 </div>

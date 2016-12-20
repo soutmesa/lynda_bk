@@ -12,7 +12,8 @@ $offset = isset($_GET['offset'])? $_GET['offset'] : 0;
 switch ($_REQUEST['act']) {
 	case 'get_courses':
 		try {
-			$stmt = $db_connect->prepare("SELECT * FROM courses limit ".$offset.", ".$limit);
+			$query = "SELECT * FROM courses";
+			$stmt = $db_connect->prepare($query);
 			$stmt->execute();
 			// return all datas queried object
 			$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -67,9 +68,6 @@ switch ($_REQUEST['act']) {
 				$query .= "OR categories.id = '" . $_GET['id'] . "' ";
 			}
 			$query .= "ORDER BY name DESC ";
-			if (isset($limit) && isset($offset)){
-				$query .= "LIMIT $offset, $limit";
-			}
 			$stmt = $db_connect->prepare($query);
 			$stmt->execute();
 			// return all datas queried object

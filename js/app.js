@@ -1,4 +1,4 @@
-angular.module('lynda_bk', ['ui.router'])
+angular.module('lynda_bk', ['ui.router', 'angularUtils.directives.dirPagination'])
 // Routes
 .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider){
 
@@ -31,31 +31,15 @@ angular.module('lynda_bk', ['ui.router'])
 
 	$scope.categories = {};
   $scope.courses = {};
-	$scope.offset = 0;
-  $scope.limit = 5;
+	$scope.currentPage = 1;
+  $scope.pageSize = 5;
   $scope.num = $stateParams.num;
-  var vm = this;
-  vm.dummyItems = _.range(1, 151);
-  vm.pager = {};
-  vm.setPage = setPage;
 
   init();
 
   function init() {
     bkFactory.getCategories(renderCategories);
-    bkFactory.getCourses($scope.limit, $scope.offset, renderCourses);
-    vm.setPage(1);
-  }
-
-  function setPage(page) {
-    if (page < 1 || page > vm.pager.totalPages) {
-        return;
-    }
-    // get pager object from service
-    vm.pager = bkFactory.GetPager(vm.dummyItems.length, page);
-    // get current page of items
-    vm.items = vm.dummyItems.slice(vm.pager.startIndex, vm.pager.endIndex + 1);
-    console.log(vm.pager.pages.length);
+    bkFactory.getCourses(renderCourses);
   }
 
   function renderCategories(result) {
@@ -108,8 +92,8 @@ angular.module('lynda_bk', ['ui.router'])
 .controller('searchController',['$scope', '$http', 'bkFactory', '$stateParams', function($scope, $http, bkFactory, $stateParams){
   $scope.key = '';
   $scope.results = {};
-  $scope.offset = 0;
-  $scope.limit = 5;
+  $scope.currentPage = 1;
+  $scope.pageSize = 5;
   $scope.id = 0;
   if (angular.isDefined($stateParams.id)){
     $scope.id = $stateParams.id;
@@ -120,7 +104,7 @@ angular.module('lynda_bk', ['ui.router'])
   init();
   function init() {
     bkFactory.getSearchLength($scope.key, $scope.id, renderLength);
-    bkFactory.search($scope.key, $scope.id, $scope.limit, $scope.offset, renderResults);
+    bkFactory.search($scope.key, $scope.id, renderResults);
   }
   function renderLength(leng){
     $scope.leng = leng[0].leng;
