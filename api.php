@@ -1,8 +1,8 @@
 <?php
 $db_host="localhost";
-$db_name="lynda_bk";
-$db_user="root";
-$db_pass="extract";
+$db_name="zadmin_lynda";
+$db_user="lynda";
+$db_pass="aty2yge8u";
 $db_connect = new PDO('mysql:host='. $db_host .';dbname='. $db_name .';charset=utf8', $db_user, $db_pass);
 $db_connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $db_connect->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
