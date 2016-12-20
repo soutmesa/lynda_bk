@@ -38,7 +38,7 @@ angular.module('lynda_bk', ['ui.router', 'angularUtils.directives.dirPagination'
 	$scope.categories = {};
   $scope.courses = {};
 	$scope.currentPage = 1;
-  $scope.pageSize = 5;
+  $scope.pageSize = 50;
   $scope.num = $stateParams.num;
   $scope.defaultSelected = 0;
 
@@ -85,7 +85,7 @@ angular.module('lynda_bk', ['ui.router', 'angularUtils.directives.dirPagination'
   $scope.key = '';
   $scope.results = {};
   $scope.currentPage = 1;
-  $scope.pageSize = 5;
+  $scope.pageSize = 50;
   $scope.id = 0;
 
   if (angular.isDefined($stateParams.id)){
