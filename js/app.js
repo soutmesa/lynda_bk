@@ -16,7 +16,7 @@ angular.module('lynda_bk', ['ui.router', 'angularUtils.directives.dirPagination'
       controller: 'searchController'
     })
     .state('show',{
-      url: '/:name&course_id=:ind',
+      url: '/:name',
       templateUrl: 'views/single.html',
       controller: 'singleController'
     })
