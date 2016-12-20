@@ -11,7 +11,7 @@ angular.module('lynda_bk', ['ui.router', 'angularUtils.directives.dirPagination'
       controller: 'homeController'
     })
     .state('search',{
-      url: '/search=:s&id=:ind',
+      url: '/search=:s&id=:id',
       templateUrl: 'views/results.html',
       controller: 'searchController'
     })
@@ -26,6 +26,12 @@ angular.module('lynda_bk', ['ui.router', 'angularUtils.directives.dirPagination'
     })
 }])
 
+// .directive("dirPaginationControls", function(){
+//   return {
+//     template: 'directives/dirPagination.tpl.html'
+//   };
+// })
+
 // Controller
 .controller('homeController',['$scope', '$http', 'bkFactory', '$stateParams', function($scope, $http, bkFactory, $stateParams){
 
@@ -34,6 +40,7 @@ angular.module('lynda_bk', ['ui.router', 'angularUtils.directives.dirPagination'
 	$scope.currentPage = 1;
   $scope.pageSize = 5;
   $scope.num = $stateParams.num;
+  $scope.defaultSelected = 0;
 
   init();
 
@@ -49,21 +56,6 @@ angular.module('lynda_bk', ['ui.router', 'angularUtils.directives.dirPagination'
 
   function renderCourses(result){
     $scope.courses = result;
-    // console.log($scope.courses );
-  }
-
-  $scope.nextPage = function(){
-    $scope.offset += $scope.limit;
-    bkFactory.getCourses($scope.limit, $scope.offset, renderCourses);
-    console.log($scope.offset);
-  }
-
-  $scope.previousPage = function(){
-    if($scope.offset > 0){
-      $scope.offset -= $scope.limit;
-      bkFactory.getCourses($scope.limit, $scope.offset, renderCourses);
-      console.log($scope.offset);
-    }
   }
 
 }])
@@ -80,7 +72,6 @@ angular.module('lynda_bk', ['ui.router', 'angularUtils.directives.dirPagination'
   }
   function renderCourse(result){
     $scope.course = result;
-    // console.log($scope.course);
   }
 
   $scope.prepareTitle = function(title){
@@ -90,46 +81,30 @@ angular.module('lynda_bk', ['ui.router', 'angularUtils.directives.dirPagination'
 }])
 
 .controller('searchController',['$scope', '$http', 'bkFactory', '$stateParams', function($scope, $http, bkFactory, $stateParams){
+
   $scope.key = '';
   $scope.results = {};
   $scope.currentPage = 1;
   $scope.pageSize = 5;
   $scope.id = 0;
+
   if (angular.isDefined($stateParams.id)){
     $scope.id = $stateParams.id;
   }
+
   if (angular.isDefined($stateParams.s)){
     $scope.key = $stateParams.s;
   }
+
   init();
+
   function init() {
-    bkFactory.getSearchLength($scope.key, $scope.id, renderLength);
     bkFactory.search($scope.key, $scope.id, renderResults);
   }
-  function renderLength(leng){
-    $scope.leng = leng[0].leng;
-  }
+
   function renderResults(result){
     $scope.results = result;
-    if ($scope.offset <= 0) {
-      $('.pager li:first-child').addClass('disabled');
-      $('.pager li:last-child').addClass('enable');
-    }
-    if ($scope.results.length < $scope.limit) {
-      $('.pager li:last-child').addClass('disabled');
-      $('.pager li:first-child').addClass('enable');
-    }
-  }
-
-  $scope.nextPage = function(){
-    $scope.offset += 10;
-    bkFactory.search($scope.key, $scope.id, $scope.limit, $scope.offset, renderResults);
-  }
-  $scope.previousPage = function(){
-    if($scope.offset > 0){
-      $scope.offset -= 10;
-      bkFactory.search($scope.key, $scope.id, $scope.limit, $scope.offset, renderResults);
-    }
+    $scope.leng = $scope.results.length;
   }
 
 }])

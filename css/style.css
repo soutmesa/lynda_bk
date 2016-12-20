@@ -1,5 +1,5 @@
 body {
-    padding-top: 50px;
+    
 }
 .dropdown.dropdown-lg .dropdown-menu {
     margin-top: -1px;
@@ -32,7 +32,6 @@ body {
 @media screen and (min-width: 768px) {
     #adv-search {
         width: 500px;
-        margin: 0 auto;
     }
     .dropdown.dropdown-lg {
         position: static !important;
@@ -41,10 +40,13 @@ body {
         min-width: 500px;
     }
 }
+#adv-search {
+  margin-top: 7px;
+}
 
 /* Show items */
 .show-items {
-    margin-top: 150px;
+    margin-top: 50px;
 }
 
 /*  404 style */

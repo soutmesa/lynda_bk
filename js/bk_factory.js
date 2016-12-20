@@ -44,14 +44,5 @@ angular.module('lynda_bk')
         console.log(resopne);
       })
     }
-    factory.getSearchLength = function(key, id, successCallback){
-      $http.get(url + 'search_length&key=' + key + '&id=' + id)
-      .success(function(result){
-        successCallback(result);
-      })
-      .error(function(data, status){
-        console.log(data);
-      })
-    }
   return factory;
 }]);

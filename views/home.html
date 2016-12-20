@@ -1,35 +1,7 @@
 <div class="col-md-12 animated fadeInDown">
   <div class="row">
-    <div class="input-group" id="adv-search">
-      <input type="text" class="form-control" ng-model="key"  placeholder="Search for courses" />
-      <div class="input-group-btn">
-        <div class="btn-group" role="group">
-          <div class="dropdown dropdown-lg">
-            <button  class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
-            <div class="dropdown-menu dropdown-menu-right" role="menu">
-              <form class="form-horizontal" role="form">
-                <div class="form-group">
-                  <label for="filter">Filter by</label>
-                  <select class="form-control" ng-model="defaultSelected">
-                  <option value="">--- Select an option ---</option>
-                    <option ng-repeat="cate in categories" value="{{cate.id}}" ng-selected= "{{ cate.id == defaultSelected }}" value="{{cate.id}}">{{cate.cate_name}}</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="contain">Keywords</label>
-                  <input class="form-control" type="text" ng-model="key"/>
-                </div>
-              </form>
-            </div>
-          </div>
-          <a ui-sref="search({s: key, id: defaultSelected})" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
-        </div>
-      </div>
-    </div>
     <section class="col-xs-12 col-sm-6 col-md-12 show-items">
-      <!-- Start Angularjs show courses -->
-      <!-- ng-repeat="course in courses" -->
-      <article class="search-result row" dir-paginate="course in courses | filter:q | itemsPerPage: pageSize" current-page="currentPage">
+      <article class="search-result row" dir-paginate="course in courses | itemsPerPage: pageSize" current-page="currentPage">
         <div class="col-xs-12 col-sm-12 col-md-3">
           <a ui-sref="show({ind: course.id})"  title="{{course.name}}"  class="thumbnail"><img src="http://loremflickr.com/200/120?random={{ $index + 1 }}" alt="Image Not Found" /></a>
         </div>

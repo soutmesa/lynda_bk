@@ -5,9 +5,7 @@
     <a ui-sref="home" class="btn btn-large btn-info" ng-if="results.length <= 0"><i class="icon-home icon-white"></i> Take Me Home</a>
   </hgroup>
   <section class="col-xs-12 col-sm-6 col-md-12">
-    <!-- Start Angularjs show results -->
-    <!-- ng-repeat="result in results" -->
-    <article class="search-result row" dir-paginate="result in results | filter:q | itemsPerPage: pageSize" current-page="currentPage">
+    <article class="search-result row" dir-paginate="result in results | itemsPerPage: pageSize" current-page="currentPage">
       <div class="col-xs-12 col-sm-12 col-md-3">
         <a ui-sref="show({ind: result.id})"  title="{{result.name}}"  class="thumbnail"><img src="http://loremflickr.com/200/120?random={{ $index + 1 }}" alt="Image Not Found" /></a>
       </div>
@@ -25,8 +23,8 @@
       </div>
       <span class="clearfix borda"></span>
     </article>
-    <!-- End Angularjs show courses -->
     <br>
+    
     <div class="text-center">
       <dir-pagination-controls boundary-links="true" template-url="directives/dirPagination.tpl.html"></dir-pagination-controls>
     </div>
