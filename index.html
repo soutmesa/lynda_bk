@@ -44,32 +44,30 @@
           </button>
           <a class="navbar-brand" href="#">Lynda</a>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <div class="navbar-right">
-            <div class="input-group" id="adv-search">
-              <input type="text" class="form-control" ng-model="key"  placeholder="Search for courses" />
-              <div class="input-group-btn">
-                <div class="btn-group" role="group">
-                <div class="dropdown dropdown-lg">
-                <button  class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
-                <div class="dropdown-menu dropdown-menu-right" role="menu">
-                  <form class="form-horizontal" role="form">
-                    <div class="form-group">
-                      <label for="filter">Filter by</label>
-                      <select class="form-control" ng-model="defaultSelected">
-                        <option value="">--- Select an option ---</option>
-                        <option ng-repeat="cate in categories" value="{{cate.id}}" ng-selected= "{{ cate.id == defaultSelected }}" value="{{cate.id}}">{{cate.cate_name}}</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="contain">Keywords</label>
-                      <input class="form-control" type="text" ng-model="key"/>
-                    </div>
-                  </form>
-                </div>
+        <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1" style="z-index: 0px;">
+          <div class="input-group" id="adv-search">
+            <input type="text" class="form-control" ng-model="key"  placeholder="Search for courses" />
+            <div class="input-group-btn">
+              <div class="btn-group" role="group">
+              <div class="dropdown dropdown-lg">
+              <button  class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+              <div class="dropdown-menu dropdown-menu-right" role="menu">
+                <form class="form-horizontal" role="form">
+                  <div class="form-group">
+                    <label for="filter">Filter by</label>
+                    <select class="form-control" ng-model="defaultSelected">
+                      <option value="">--- Select an option ---</option>
+                      <option ng-repeat="cate in categories" value="{{cate.id}}" ng-selected= "{{ cate.id == defaultSelected }}" value="{{cate.id}}">{{cate.cate_name}}</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="contain">Keywords</label>
+                    <input class="form-control" type="text" ng-model="key"/>
+                  </div>
+                </form>
               </div>
-              <a ui-sref="search({s: key, id: defaultSelected})" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
-              </div>
+            </div>
+            <a ui-sref="search({s: key, id: defaultSelected})" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
             </div>
           </div>
         </div>

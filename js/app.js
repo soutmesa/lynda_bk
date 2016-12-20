@@ -16,12 +16,12 @@ angular.module('lynda_bk', ['ui.router', 'angularUtils.directives.dirPagination'
       controller: 'searchController'
     })
     .state('show',{
-      url: '/:name',
+      url: '/c_name=:name',
       templateUrl: 'views/single.html',
       controller: 'singleController'
     })
     .state('404', {
-      url: '/.*',
+      url: '/404',
       templateUrl: 'views/404.html'
     })
 }])
@@ -60,7 +60,7 @@ angular.module('lynda_bk', ['ui.router', 'angularUtils.directives.dirPagination'
 
 }])
 
-.controller('singleController',['$scope', '$http', 'bkFactory', '$stateParams', function($scope, $http, bkFactory, $stateParams){
+.controller('singleController',['$scope', '$http', 'bkFactory', '$stateParams', '$location', function($scope, $http, bkFactory, $stateParams, $location){
 
   $scope.id = $stateParams.ind;
   $scope.name = $stateParams.name;
@@ -73,6 +73,10 @@ angular.module('lynda_bk', ['ui.router', 'angularUtils.directives.dirPagination'
   }
   function renderCourse(result){
     $scope.course = result;
+    console.log($scope.course.length);
+    if($scope.course.length===0){
+      $location.path('/404');
+    }
   }
 
   $scope.prepareTitle = function(title){
