@@ -22,9 +22,9 @@ angular.module('lynda_bk')
           console.log(data);
         })
     }
-    factory.show = function(id, successCallback){
+    factory.show = function(name, successCallback){
       $('.pace').removeClass('pace-inactive');
-      $http.get(url + 'get_course&id=' + id)
+      $http.get(url + 'get_course&name=' + name)
       .success(function(resopne) {
         successCallback(resopne);
         $('.pace').addClass('pace-inactive');

@@ -26,12 +26,12 @@ switch ($_REQUEST['act']) {
 		break;
 	case 'get_course':
 		try {
-			$id = $_GET['id'];
+			$name = $_GET['name'];
 			$query = "SELECT videos.id as v_id, videos.name as v_name, subtitle, v_code, courses.name, categories.cate_name FROM videos ";
 			$query .= "INNER JOIN courses ON courses.id = videos.course_id ";
 			$query .= "INNER JOIN cate_course ON courses.id = cate_course.course_id ";
 			$query .= "INNER JOIN categories ON cate_course.cate_id = categories.id ";
-			$query .= "WHERE courses.id = '" .$id. "' ORDER BY v_code";
+			$query .= "WHERE courses.name = '" .$name. "' ORDER BY v_code";
 			$stmt = $db_connect->prepare($query);
 			$stmt->execute();
 			// return all datas queried object

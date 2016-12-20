@@ -21,7 +21,7 @@ angular.module('lynda_bk', ['ui.router', 'angularUtils.directives.dirPagination'
       controller: 'singleController'
     })
     .state('404', {
-      url: '/404',
+      url: '/.*',
       templateUrl: 'views/404.html'
     })
 }])
@@ -63,12 +63,13 @@ angular.module('lynda_bk', ['ui.router', 'angularUtils.directives.dirPagination'
 .controller('singleController',['$scope', '$http', 'bkFactory', '$stateParams', function($scope, $http, bkFactory, $stateParams){
 
   $scope.id = $stateParams.ind;
+  $scope.name = $stateParams.name;
   $scope.course = {};
   $scope.videos = {};
   $scope.ind = 0;
   init();
   function init() {
-    bkFactory.show($scope.id, renderCourse);
+    bkFactory.show($scope.name, renderCourse);
   }
   function renderCourse(result){
     $scope.course = result;
