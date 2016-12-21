@@ -1,150 +1,171 @@
 <div class="animated fadeInDown">
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <h2 class="course-title">{{course[0].name}}</h2>
-  </div>
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="col-md-3" style="padding-left: 0px;">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h3 class="panel-title">Enjoy the course...</h3>
-        </div>
-        <ul class="list-group lists">
-          <li>
-            <a href="" ng-repeat="video in course" class="list-group-item item" ng-value='course[{{$index}}].cate_name + "/" + course[{{$index}}].name + "/" + course[{{$index}}].v_name'>
-              <span ng-value="prepareTitle(video.v_name)">{{$index + 1}}. {{prepareTitle(video.v_name)}}</span>
-            </a>
-          </li>
-        </ul>
-        <div class="panel-footer"><a href="#/" class="btn btn-primary">Home</a></div>
+  <div class="row">
+
+    <section class="course-name">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h2 class="course-title">{{course[0].name}}</h2>
       </div>
-    </div>
-    <div class="col-md-9 col-sm-12">
-      <div id="player" data-target="http://lynda.bi-kay.com/AdSense-tutorials/Learn-Google-AdSense-Basics/AdSense%20Performance%20reports%20tab-507476.mp4"></div>
-      <script type="text/javascript">
+    </section>
 
-        function check(url){
-          return url.replace(/(\/)(\/)/ig, "$1");
-        }
+  </div>
 
-        $('body').on('click', '.item', function(){
-          var url = "http://lynda.bi-kay.com/" + check($(this).attr('value'));
-          var sub = "subtitles/" + $(this).text().replace(/\d\.\s/ig,"").trim() + ".srt";
-          playVideo(url, sub, true);
-        });
+  <div class="row">
 
-        var url = $('#player').attr('data-target');
-        var sub = "subtitles/Welcome.srt";
-        playVideo(url, sub, false);
+    <section class="course-list-videos">
+      <div class="col-lg-12 col-md-12 col-sm-6 col-xs-6">
+        <div class="col-md-3" style="padding-left: 2px;">
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">Enjoy the course...</h3>
+            </div>
+            <ul class="list-group lists">
+              <li>
+                <a href="" ng-repeat="video in course" class="list-group-item item" ng-value='course[{{$index}}].cate_name + "/" + course[{{$index}}].name + "/" + course[{{$index}}].v_name'>
+                  <span ng-value="prepareTitle(video.v_name)">{{$index + 1}}. {{prepareTitle(video.v_name)}}</span>
+                </a>
+              </li>
+            </ul>
+            <div class="panel-footer"><a href="#/" class="btn btn-primary">Home</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9 col-sm-12" style="padding-left: 2px;">
+        <div id="player" data-target="http://lynda.bi-kay.com/AdSense-tutorials/Learn-Google-AdSense-Basics/AdSense%20Performance%20reports%20tab-507476.mp4"></div>
+        <script type="text/javascript">
 
-        function playVideo(url,sub, auto){
-          var start = '';
-          jwplayer('player').setup({
-            'width': '100%',
-            'height':'auto',
-            'responsive': true,
-            'stretching': 'exactfit',
-            'autostart': auto,
-            'file': url,
-            // 'image': 'https://cdn0.iconfinder.com/data/icons/network-technology-1/24/11-512.png',
-            'tracks':[{
-              file: sub,
-              label: "English",
-              kind: "captions",
-              "default": false
-            }],
-            'events':{
-              onReady: function(){
-                start = this.getDuration();
-              },
-              onPlay: function(){
-                console.log(start + ' go');
-                $('.jw-text-elapsed, .jw-text-duration').show();
-              },
-              onComplete: function() {
-                console.log("completed..");
-              }
-            }
+          function check(url){
+            return url.replace(/(\/)(\/)/ig, "$1");
+          }
+
+          $('body').on('click', '.item', function(){
+            var url = "http://lynda.bi-kay.com/" + check($(this).attr('value'));
+            var sub = "subtitles/" + $(this).text().replace(/\d\.\s/ig,"").trim() + ".srt";
+            playVideo(url, sub, true);
           });
-        }
 
-      </script>
-    </div>
-  </div>
-  <br>
-  
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <h4>About this video</h4>
-    <p class="text-responsive">Improve your Revit MEP workflow with Revit families. Learn how to model electrical panels and junction boxes, recessed and track lighting, HVAC systems with ducting and air terminals, and pipe systems with Revit families.</p>
-  </div>
-  <br>
+          var url = $('#player').attr('data-target');
+          var sub = "subtitles/Welcome.srt";
+          playVideo(url, sub, false);
 
-  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="panel with-nav-tabs panel-primary">
-      <div class="panel-heading">
-        <ul class="nav nav-tabs">
-          <li class="active"><a href="/#tab1default" data-toggle="tab">Over View</a></li>
-          <li><a href="/#tab2default" data-toggle="tab">Default 2</a></li>
-          <li><a href="/#tab3default" data-toggle="tab">Exercise Files</a></li>
-        </ul>
+          function playVideo(url,sub, auto){
+            var start = '';
+            jwplayer('player').setup({
+              'width': '100%',
+              'height':'auto',
+              'responsive': true,
+              'stretching': 'exactfit',
+              'autostart': auto,
+              'file': url,
+              // 'image': 'https://cdn0.iconfinder.com/data/icons/network-technology-1/24/11-512.png',
+              'tracks':[{
+                file: sub,
+                label: "English",
+                kind: "captions",
+                "default": false
+              }],
+              'events':{
+                onReady: function(){
+                  start = this.getDuration();
+                },
+                onPlay: function(){
+                  console.log(start + ' go');
+                  $('.jw-text-elapsed, .jw-text-duration').show();
+                },
+                onComplete: function() {
+                  console.log("completed..");
+                }
+              }
+            });
+          }
+
+        </script>
       </div>
-      <div class="panel-body">
-        <div class="tab-content">
-          <div class="tab-pane fade in active" id="tab1default">
+    </section>
+  </div>
+  <span class="clearfix borda" style="margin-bottom: 5000px; padding-bottom: 5000px;"></span>
 
-            <div class="row">
-              <div class="col-md-2" align="center">
-                <b>Author</b>
-              </div>
-              <div class="col-md-10">
-                 <span><b>Released</b> 12/9/2016</span> 
-              </div>
-            </div>
-            <br>
+  <!-- <div class="row">
+    <section class="about-course">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <h4>About this video</h4>
+        <p class="text-responsive">Improve your Revit MEP workflow with Revit families. Learn how to model electrical panels and junction boxes, recessed and track lighting, HVAC systems with ducting and air terminals, and pipe systems with Revit families.</p>
+      </div>
+    </section>
+  </div>
+  <span class="clearfix borda"></span>
 
-            <div class="row">
-              <div class="col-md-2" align="center">
-                <div class="image">
-                  <img src="https://cdn.lynda.com/authors/2131500_200x200_thumb.jpg?v=190372694">
-                </div>
-                <div>
-                  <a href="">Eric Wing</a>
-                </div>
-              </div>
-              <div class="col-md-10">
-
-                <p class="text-responsive">
-                  Revit families are an incredible feature, offering libraries of ready-made objects that can be used in CAD drawings or customized to fit any project. Families can also be modeled from scratch and shared with colleagues and clients. This course dives into Revit MEP families, a specific family type for mechanical, electrical, and plumbing (MEP) design.
-                </p>
-
-                <p class="text-responsive">
-                  Author Eric Wing shows how to model MEP families on a topic-by-topic basic, so you can learn the ins and outs of family creation while modeling exactly what you need for your drawings today. The course starts with a review of the basics: parameters, connectors, dimensions, and various family modeling techniques. Then Eric investigates specific parts and systems that can be created with Revit families: electrical panels and junction boxes, recessed and track lighting, HVAC systems with ducting and air terminals, and pipe systems. Along the way, he introduces the reference planes, parameters, shapes, and hosting options necessary to build families on your own.
-                </p>
-
-                <p class="text-responsive">Topics include:
-                <ul>
-                  <li>What is a Revit family?</li>
-                  <li>Using the Revit Family Editor</li>
-                  <li>Working with family parameters</li>
-                  <li>Constraining families with dimensions</li>
-                  <li>Creating extrusions, sweeps, and blends</li>
-                  <li>Creating panels and junction boxes</li>
-                  <li>Creating electrical lighting</li>
-                  <li>Modeling mechanical HVAC systems</li>
-                  <li>Creating pipe systems</li>
-                  <li>Annotating families</li>
-                </ul>
-                </p>
-
-              </div>
-            </div>
-
+  <div class="row">
+    <section class="course-info">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="panel with-nav-tabs panel-primary">
+          <div class="panel-heading">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="/#tab1default" data-toggle="tab">Over View</a></li>
+              <li><a href="/#tab2default" data-toggle="tab">Default 2</a></li>
+              <li><a href="/#tab3default" data-toggle="tab">Exercise Files</a></li>
+            </ul>
           </div>
-          <div class="tab-pane fade" id="tab2default">Default 2</div>
-          <div class="tab-pane fade" id="tab3default">
-            <a href="">click here</a>
+          <div class="panel-body">
+            <div class="tab-content">
+              <div class="tab-pane fade in active" id="tab1default">
+
+                <div class="row">
+                  <div class="col-md-2" align="center">
+                    <b>Author</b>
+                  </div>
+                  <div class="col-md-10">
+                     <span><b>Released</b> 12/9/2016</span> 
+                  </div>
+                </div>
+                <br>
+
+                <div class="row">
+                  <div class="col-md-2" align="center">
+                    <div class="image">
+                      <img src="https://cdn.lynda.com/authors/2131500_200x200_thumb.jpg?v=190372694">
+                    </div>
+                    <div>
+                      <a href="">Eric Wing</a>
+                    </div>
+                  </div>
+                  <div class="col-md-10">
+
+                    <p class="text-responsive">
+                      Revit families are an incredible feature, offering libraries of ready-made objects that can be used in CAD drawings or customized to fit any project. Families can also be modeled from scratch and shared with colleagues and clients. This course dives into Revit MEP families, a specific family type for mechanical, electrical, and plumbing (MEP) design.
+                    </p>
+
+                    <p class="text-responsive">
+                      Author Eric Wing shows how to model MEP families on a topic-by-topic basic, so you can learn the ins and outs of family creation while modeling exactly what you need for your drawings today. The course starts with a review of the basics: parameters, connectors, dimensions, and various family modeling techniques. Then Eric investigates specific parts and systems that can be created with Revit families: electrical panels and junction boxes, recessed and track lighting, HVAC systems with ducting and air terminals, and pipe systems. Along the way, he introduces the reference planes, parameters, shapes, and hosting options necessary to build families on your own.
+                    </p>
+
+                    <p class="text-responsive">Topics include:
+                    <ul>
+                      <li>What is a Revit family?</li>
+                      <li>Using the Revit Family Editor</li>
+                      <li>Working with family parameters</li>
+                      <li>Constraining families with dimensions</li>
+                      <li>Creating extrusions, sweeps, and blends</li>
+                      <li>Creating panels and junction boxes</li>
+                      <li>Creating electrical lighting</li>
+                      <li>Modeling mechanical HVAC systems</li>
+                      <li>Creating pipe systems</li>
+                      <li>Annotating families</li>
+                    </ul>
+                    </p>
+
+                  </div>
+                </div>
+
+              </div>
+              <div class="tab-pane fade" id="tab2default">Default 2</div>
+              <div class="tab-pane fade" id="tab3default">
+                <a href="">click here</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </section> -->
+
   </div>
 </div>

@@ -1,18 +1,18 @@
-<div class="col-md-12 animated fadeInDown">
+<div class="col-xs-12 col-sm-12 col-md-12 animated fadeInDown">
   <div class="row">
-    <section class="col-xs-12 col-sm-6 col-md-12 show-items">
+    <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12 show-items">
       <article class="search-result row" dir-paginate="course in courses | itemsPerPage: pageSize" current-page="currentPage">
-        <div class="col-xs-12 col-sm-12 col-md-3">
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
           <a ui-sref="show({ind: course.id, name: course.name})"  title="{{course.name}}"  class="thumbnail"><img src="http://loremflickr.com/200/120?random={{ $index + 1 }}" alt="Image Not Found" /></a>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-2">
+        <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
           <ul class="meta-search">
             <li><i class="glyphicon glyphicon-calendar"></i> <span>{{course.date_of_released}}12/9/2016</span></li>
             <li><i class="glyphicon glyphicon-time"></i> <span>{{course.duration}}3h30min</span></li>
             <li><i class="glyphicon glyphicon-eye-open"></i> <span>{{course.view}}101</span></li>
           </ul>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+        <div class="col-xs-12 col-sm-9 col-md-7 col-lg-7 excerpet">
           <h3><a ui-sref="show({ind: course.id, name: course.name})" title="{{course.name}}">{{course.name}}</a></h3>
           <p>{{course.description}}Ready to learn how to code, debug, and program? Get started with our expert-taught tutorials explaining programming languages like C, C#, Python, Visual Basic, Java, and more.</p>
           <span class="plus"><a ui-sref="show({ind: course.id, name: course.name})"><i class="glyphicon glyphicon-arrow-right"></i></a></span>

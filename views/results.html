@@ -1,22 +1,22 @@
-<div class="col-md-12 animated bounceInDown">
+<div class="col-xs-12 col-sm-12 col-md-12  animated bounceInDown">
   <hgroup class="mb20 hero-unit center">
     <h1>Search Results</h1>
     <h2 class="lead"><strong class="text-danger">{{leng}}</strong> <span ng-if="results.length">results were</span> found  <span ng-if="key.length > 0">for the search for <strong class="text-danger">{{key}}</strong></span></h2>
     <a ui-sref="home" class="btn btn-large btn-info" ng-if="results.length <= 0"><i class="icon-home icon-white"></i> Take Me Home</a>
   </hgroup>
-  <section class="col-xs-12 col-sm-6 col-md-12">
+  <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <article class="search-result row" dir-paginate="result in results | itemsPerPage: pageSize" current-page="currentPage">
-      <div class="col-xs-12 col-sm-12 col-md-3">
+      <div class="ol-xs-12 col-sm-3 col-md-3 col-lg-3">
         <a ui-sref="show({ind: result.id, name: result.name})"  title="{{result.name}}"  class="thumbnail"><img src="http://loremflickr.com/200/120?random={{ $index + 1 }}" alt="Image Not Found" /></a>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-2">
+      <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
         <ul class="meta-search">
           <li><i class="glyphicon glyphicon-calendar"></i> <span>{{result.date_of_released}}12/9/2016</span></li>
           <li><i class="glyphicon glyphicon-time"></i> <span>{{result.duration}}3h30min</span></li>
           <li><i class="glyphicon glyphicon-eye-open"></i> <span>{{result.view}}101</span></li>
         </ul>
       </div>
-      <div class="col-xs-12 col-sm-12 col-md-7 excerpet">
+      <div class="col-xs-12 col-sm-9 col-md-7 col-lg-7 excerpet">
         <h3><a ui-sref="show({ind: result.id, name: result.name})" title="{{result.name}}">{{result.name}}</a></h3>
         <p>{{result.description}}Ready to learn how to code, debug, and program? Get started with our expert-taught tutorials explaining programming languages like C, C#, Python, Visual Basic, Java, and more.</p>
         <span class="plus"><a ui-sref="show({ind: result.id, name: result.name})"><i class="glyphicon glyphicon-arrow-right"></i></a></span>

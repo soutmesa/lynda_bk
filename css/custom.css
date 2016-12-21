@@ -150,3 +150,11 @@ object {
 .error-actions .btn { margin-right:10px; }
 
 /****************************** End Page Not Found ******************************/
+
+/****************************** Course Details ******************************/
+.course-name, .course-list-videos {
+	width: 100%;
+	height: auto;
+}
+
+/**************************** End Course Details ****************************/
