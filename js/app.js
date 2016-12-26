@@ -8,21 +8,25 @@ angular.module('lynda_bk', ['ui.router', 'angularUtils.directives.dirPagination'
     .state('home', {
       url: "/",
       templateUrl: "views/home.html",
-      controller: 'homeController'
+      controller: "homeController",
+      data : { pageTitle: "Home" }
     })
-    .state('search',{
-      url: '/search=:s&id=:id',
+    .state("search",{
+      url: "/search=:s&id=:id",
       templateUrl: 'views/results.html',
-      controller: 'searchController'
+      controller: 'searchController',
+      data : { pageTitle: "Results page" }
     })
-    .state('show',{
-      url: '/c_name=:name',
-      templateUrl: 'views/single.html',
-      controller: 'singleController'
+    .state("show",{
+      url: "/c_name=:name",
+      templateUrl: "views/single.html",
+      controller: "singleController",
+      data : { pageTitle: "Course Page" }
     })
-    .state('404', {
-      url: '/404',
-      templateUrl: 'views/404.html'
+    .state("404", {
+      url: "/404",
+      templateUrl: "views/404.html",
+      data : { pageTitle: "Page not found" }
     })
 }])
 
@@ -31,6 +35,11 @@ angular.module('lynda_bk', ['ui.router', 'angularUtils.directives.dirPagination'
 //     template: 'directives/dirPagination.tpl.html'
 //   };
 // })
+
+.run([ '$rootScope', '$state', '$stateParams', function ($rootScope, $state, $stateParams) {
+  $rootScope.$state = $state;
+  $rootScope.$stateParams = $stateParams;
+}])
 
 // Controller
 .controller('homeController',['$scope', '$http', 'bkFactory', '$stateParams', function($scope, $http, bkFactory, $stateParams){
@@ -67,20 +76,30 @@ angular.module('lynda_bk', ['ui.router', 'angularUtils.directives.dirPagination'
   $scope.course = {};
   $scope.videos = {};
   $scope.ind = 0;
+  $scope.lists = [];
   init();
   function init() {
     bkFactory.show($scope.name, renderCourse);
   }
   function renderCourse(result){
     $scope.course = result;
-    console.log($scope.course.length);
+    // console.log($scope.course.length);
     if($scope.course.length===0){
       $location.path('/404');
+    }else{
+      for(i=0; i < $scope.course.length; i++){
+        var url = $scope.course[i].cate_name + "/" + $scope.course[i].name + "/" + $scope.course[i].v_name;
+        $scope.lists.push({'file': 'http://lynda.bi-kay.com/' + check(url), 'title' : $scope.prepareTitle($scope.course[i].v_name), 'tracks': [{'file': '', 'label': 'english', 'kind':'captions'}]});
+      }
     }
   }
 
   $scope.prepareTitle = function(title){
-    return title.replace(/[0-9]+|\s{2}|\.mp4|\-/ig,"");
+    return title.replace(/[0-9]+|\s{2}|\.mp4|\-/ig," ").trim();
+  }
+
+  function check(url){
+    return url.replace(/(\/)(\/)/ig, "$1");
   }
 
 }])

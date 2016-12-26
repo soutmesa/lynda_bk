@@ -3,7 +3,7 @@
     <section class="col-xs-12 col-sm-12 col-md-12 col-lg-12 show-items">
       <article class="search-result row" dir-paginate="course in courses | itemsPerPage: pageSize" current-page="currentPage">
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-          <a ui-sref="show({ind: course.id, name: course.name})"  title="{{course.name}}"  class="thumbnail"><img src="http://loremflickr.com/200/120?random={{ $index + 1 }}" alt="Image Not Found" /></a>
+          <a ui-sref="show({ind: course.id, name: course.name})"  title="{{course.name}}"  class="thumbnail"><img class="image-responsive" src="http://loremflickr.com/200/120?random={{ $index + 1 }}" alt="Image Not Found" /></a>
         </div>
         <div class="hidden-xs hidden-sm col-md-2 col-lg-2">
           <ul class="meta-search">
@@ -13,7 +13,7 @@
           </ul>
         </div>
         <div class="col-xs-12 col-sm-9 col-md-7 col-lg-7 excerpet">
-          <h3><a ui-sref="show({ind: course.id, name: course.name})" title="{{course.name}}">{{course.name}}</a></h3>
+          <h3><a ui-sref="show({ind: course.id, name: course.name})" title="{{course.name}}" class="text-responsive">{{course.name}}</a></h3>
           <p>{{course.description}}Ready to learn how to code, debug, and program? Get started with our expert-taught tutorials explaining programming languages like C, C#, Python, Visual Basic, Java, and more.</p>
           <span class="plus"><a ui-sref="show({ind: course.id, name: course.name})"><i class="glyphicon glyphicon-arrow-right"></i></a></span>
         </div>
