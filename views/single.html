@@ -7,7 +7,7 @@
   </section>
 
   <section class="course-list-videos row" id="course-list-videos">
-    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 hidden-sm hidden-xs">
       <div class="panel panel-primary">
         <div class="panel-heading">
           <h3 class="panel-title">Enjoy the course...</h3>
@@ -22,55 +22,70 @@
         <div class="panel-footer"><a href="#/" class="btn btn-primary">Home</a></div>
       </div>
     </div>
-    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 playlists" style="padding-left: 2px;" value="{{lists}}">
-      <div id="player" data-target="http://lynda.bi-kay.com/AdSense-tutorials/Learn-Google-AdSense-Basics/AdSense%20Performance%20reports%20tab-507476.mp4"></div>
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 playlists" style="" value="{{lists}}">
+      <div id="player"></div>
       <script type="text/javascript">
-        var playlists = '';
-        var lists = [];
-        setTimeout(function(){
-          playlists = $('.playlists').attr("value");
-          lists = JSON.parse(playlists);
-          console.log(lists);
-          playVideo(lists, '', true);
-        }, 1000);
+        if($(document).width() <= 992){
+          setTimeout(function(){
+            playlists = $('.playlists').attr("value");
+            lists = JSON.parse(playlists);
+            playVideo(lists, '', true);
+          }, 1000);
 
-        function playVideo(url,sub, auto){
-          var start = '';
-          jwplayer('player').setup({
-            'width': '100%',
-            'height':'auto',
-            'responsive': true,
-            'stretching': 'exactfit',
-            'autostart': auto,
-            // 'file': url,
-            'playlist' : url,
-            // 'image': 'https://cdn0.iconfinder.com/data/icons/network-technology-1/24/11-512.png',
-            'tracks':[{
-              file: sub,
-              label: "English",
-              kind: "captions",
-              "default": false
-            }],
-            'events':{
-              onReady: function(){
-                start = this.getDuration();
-              },
-              onPlay: function(){
-                console.log(start + ' go');
-                $('.jw-text-elapsed, .jw-text-duration').show();
-              },
-              onComplete: function() {
-                console.log("completed..");
-              }
-            }
+          function playVideo(url,sub, auto){
+            jwplayer('player').setup({
+              'width': '100%',
+              'height':'auto',
+              'responsive': true,
+              'stretching': 'exactfit',
+              'autostart': auto,
+              'playlist' : url,
+              'tracks':[{
+                file: sub,
+                label: "English",
+                kind: "captions",
+                "default": false
+              }]
+            });
+          }
+        }else{
+
+          setTimeout(function(){
+            url = 'http://lynda.bi-kay.com/'+ $('.item:first-child').attr("value").replace(/\/\//g, "/");
+            sub = '';
+            playVideo(url,sub, false);
+          }, 1000);
+
+          $('body').on('click', '.item', function(){
+            url = 'http://lynda.bi-kay.com/'+ $(this).attr("value").replace(/\/\//g, "/");
+            sub = '';
+            playVideo(url,sub, true);
           });
+
+          function playVideo(url,sub, auto){
+            var start = '';
+            jwplayer('player').setup({
+              'width': '100%',
+              'height':'auto',
+              'responsive': true,
+              'stretching': 'exactfit',
+              'autostart': auto,
+              'file': url,
+              'tracks':[{
+                file: sub,
+                label: "English",
+                kind: "captions",
+                default: false
+              }]
+            });
+          }
         }
 
       </script>
     </div>
   </section>
-  <span class="clearfix borda" style="margin-bottom: 5000px; padding-bottom: 5000px;"></span>
-  <!-- <div class="row">
+  <span class="clearfix borda" style="padding-bottom: 50px;"></span>
+  <div class="row hidden-sm hidden-xs">
     <section class="about-course">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <h4>About this video</h4>
@@ -80,7 +95,7 @@
   </div>
   <span class="clearfix borda"></span>
 
-  <div class="row">
+  <div class="row hidden-sm hidden-xs">
     <section class="course-info">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="panel with-nav-tabs panel-primary">
@@ -151,7 +166,7 @@
           </div>
         </div>
       </div>
-    </section> -->
+    </section>
 
   </div>
 </div>
