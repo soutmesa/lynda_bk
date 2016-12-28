@@ -10,12 +10,26 @@ Version	   : 1.0
 # _*_ coding:utf-8 _*_
 
 import os, sys, re
+from imp import reload
+# reload(sys)
+# sys.setdefaultencoding()
 fr = open("lynda.csv", "r", encoding="utf-8", errors="ignore")
-fw_vi = open("videos.csv", "w+", encoding="utf-8", errors="ignore")
 tmp_datas = fr.read()
 sptlist = tmp_datas.split("\n")
 sptlist.pop()
+sptlist.pop(0)
 fr.close()
+
+ffr = open("file_write.csv", "r", encoding="utf-8", errors="ignore")
+to_search = ffr.read()
+list_to_search = to_search.split('\n')
+list_to_search.pop()
+ffr.close()
+for lists in list_to_search:
+	print(str(lists).encode("utf-8"))
+
+fw_vi = open("videos.csv", "w+", encoding="utf-8", errors="ignore")
+
 v_id = 0
 arr_courses = []
 arr_cates = []

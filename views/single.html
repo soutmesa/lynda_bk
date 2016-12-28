@@ -25,6 +25,63 @@
     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 playlists" style="" value="{{lists}}">
       <div id="player"></div>
       <script type="text/javascript">
+        $( window ).resize(function() {
+          if($(document).width() <= 992){
+            setTimeout(function(){
+              playlists = $('.playlists').attr("value");
+              lists = JSON.parse(playlists);
+              playVideo(lists, '', true);
+            }, 1000);
+
+            function playVideo(url,sub, auto){
+              jwplayer('player').setup({
+                'width': '100%',
+                'height':'auto',
+                'responsive': true,
+                'stretching': 'exactfit',
+                'autostart': auto,
+                'playlist' : url,
+                'tracks':[{
+                  file: sub,
+                  label: "English",
+                  kind: "captions",
+                  "default": false
+                }]
+              });
+            }
+          }else{
+
+            setTimeout(function(){
+              url = 'http://lynda.bi-kay.com/'+ $('.item:first-child').attr("value").replace(/\/\//g, "/");
+              sub = '';
+              playVideo(url,sub, false);
+            }, 1000);
+
+            $('body').on('click', '.item', function(){
+              url = 'http://lynda.bi-kay.com/'+ $(this).attr("value").replace(/\/\//g, "/");
+              sub = '';
+              playVideo(url,sub, true);
+            });
+
+            function playVideo(url,sub, auto){
+              var start = '';
+              jwplayer('player').setup({
+                'width': '100%',
+                'height':'auto',
+                'responsive': true,
+                'stretching': 'exactfit',
+                'autostart': auto,
+                'file': url,
+                'tracks':[{
+                  file: sub,
+                  label: "English",
+                  kind: "captions",
+                  default: false
+                }]
+              });
+            }
+          }
+        });
         if($(document).width() <= 992){
           setTimeout(function(){
             playlists = $('.playlists').attr("value");
